@@ -4,61 +4,114 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AR Draw Trace: Sketch & Paint</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; }
-    header { background: #222; color: #fff; padding: 20px; text-align: center; }
-    section { padding: 20px; }
-    h2 { color: #333; }
-    .screenshots img { width: 200px; margin: 10px; border-radius: 10px; }
-    footer { background: #f4f4f4; text-align: center; padding: 15px; margin-top: 20px; }
-    a.button { display: inline-block; background: #0073e6; color: white; padding: 10px 20px; 
-               border-radius: 6px; text-decoration: none; margin-top: 10px; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background: #f9fafc;
+      color: #222;
+      line-height: 1.6;
+    }
+    header {
+      background: linear-gradient(135deg, #4f46e5, #06b6d4);
+      color: #fff;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+    header img {
+      width: 100px;
+      height: 100px;
+      border-radius: 20%;
+      margin-bottom: 1rem;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+    header p {
+      margin-top: 0.5rem;
+      font-size: 1.1rem;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.75rem 1.5rem;
+      background: #fff;
+      color: #4f46e5;
+      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+    .btn:hover {
+      background: #e0e7ff;
+    }
+    .screenshots {
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+    .screenshots h2 {
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      max-width: 1100px;
+      margin: auto;
+    }
+    .gallery img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+    .gallery img:hover {
+      transform: scale(1.03);
+    }
+    footer {
+      background: #111827;
+      color: #9ca3af;
+      text-align: center;
+      padding: 1.5rem 1rem;
+      margin-top: 2rem;
+    }
+    footer a {
+      color: #06b6d4;
+      text-decoration: none;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
+
   <header>
+    <img src="https://i.postimg.cc/GhKP98v3/Logo-500kb.png" alt="App Logo">
     <h1>AR Draw Trace: Sketch & Paint</h1>
-    <p>Bring your creativity to life with AR drawing & sketching!</p>
+    <p>Bring your imagination to life with AR-powered sketching & tracing. Easy, fun, and creative drawing experience!</p>
+    <a href="#" class="btn"><i class="fab fa-google-play"></i> Get it on Google Play</a>
   </header>
 
-  <section>
-    <h2>About the App</h2>
-    <p>AR Draw Trace: Sketch & Paint helps you trace and sketch any image with augmented reality. 
-    Simply select an image, project it, and trace with ease. Perfect for artists, students, and hobbyists.</p>
-  </section>
-
-  <section>
-    <h2>Features</h2>
-    <ul>
-      <li>📷 Trace any image with AR guidance</li>
-      <li>✏️ Easy sketching & painting</li>
-      <li>🎨 Improve drawing skills step by step</li>
-      <li>🖼️ Import your own pictures</li>
-      <li>⚡ Lightweight and easy to use</li>
-    </ul>
-  </section>
-
   <section class="screenshots">
-    <h2>Screenshots</h2>
-    <img src="https://i.postimg.cc/d0RK993Z/SS-1.png" alt="Screenshot 1">
-    <img src="https://i.postimg.cc/nz0bycvH/SS-2.png" alt="Screenshot 2">
-    <img src="https://i.postimg.cc/bJzfV2SC/SS-4.png" alt="Screenshot 3">
-    <img src="https://i.postimg.cc/T11Mf9D/SS-5.png" alt="Screenshot 4">
-  </section>
-
-  <section>
-    <h2>Privacy Policy</h2>
-    <p><a href="https://shreejieasyapps.blogspot.com/2023/09/ar-drawing-sketch-real-sketch.html" target="_blank">
-      View Privacy Policy</a></p>
-  </section>
-
-  <section>
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:report.info.ai@gmail.com">report.info.ai@gmail.com</a></p>
+    <h2>App Screenshots</h2>
+    <div class="gallery">
+      <img src="https://i.postimg.cc/Jy3k5dTn/SS-1.png" alt="Screenshot 1">
+      <img src="https://i.postimg.cc/vgQ6qLjv/SS-2.png" alt="Screenshot 2">
+      <img src="https://i.postimg.cc/WFXqQqcc/SS-3.png" alt="Screenshot 3">
+      <img src="https://i.postimg.cc/1g1F6Zr2/SS-4.png" alt="Screenshot 4">
+      <img src="https://i.postimg.cc/7JhJDPqG/SS-5.png" alt="Screenshot 5">
+      <img src="https://i.postimg.cc/6TpvCcCW/SS-6.png" alt="Screenshot 6">
+    </div>
   </section>
 
   <footer>
-    <p>&copy; 2025 AR Draw Trace: Sketch & Paint</p>
+    <p>© 2025 AR Draw Trace. All rights reserved.</p>
+    <p>Support: <a href="mailto:report.info.ai@gmail.com">report.info.ai@gmail.com</a></p>
   </footer>
+
 </body>
 </html>
