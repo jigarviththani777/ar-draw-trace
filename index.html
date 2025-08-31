@@ -4,179 +4,260 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>AR Draw Trace — Sketch & Paint</title>
-  <meta name="description" content="AR Draw Trace — trace and sketch with AR. See screenshots, privacy policy, and contact for support." />
+  <meta name="description" content="AR Draw Trace — trace and sketch with AR guidance. Screenshots, privacy policy, and support contact." />
   <link rel="icon" href="https://i.postimg.cc/GhKP98v3/Logo-500kb.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
     :root{
-      --accent1:#4f46e5;
-      --accent2:#06b6d4;
+      --bg:#f4f7fb;
+      --panel:#ffffff;
       --muted:#6b7280;
-      --bg:#f7f9fb;
-      --card:#ffffff;
-      --radius:12px;
-      --maxw:1100px;
-      --gap:18px;
+      --accent1:#0ea5e9;
+      --accent2:#7c3aed;
+      --card-radius:14px;
+      --max-width:1180px;
+      --shadow: 0 8px 30px rgba(18,25,42,0.06);
     }
     *{box-sizing:border-box}
+    html,body{height:100%}
     body{
       margin:0;
-      font-family:Inter,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial;
-      color:#111827;
-      background:var(--bg);
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+      background:linear-gradient(180deg,var(--bg),#ffffff 40%);
+      color:#071133;
       -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
     }
 
-    /* Header */
+    /* ---------- Header / Hero ---------- */
     .hero{
-      background: linear-gradient(135deg,var(--accent1),var(--accent2));
-      color:white;
-      padding:48px 16px;
-      text-align:center;
-    }
-    .hero .inner{
-      max-width:var(--maxw);
-      margin:0 auto;
+      background: linear-gradient(90deg,var(--accent2),var(--accent1));
+      color:#fff;
+      padding:48px 20px;
       display:flex;
-      gap:18px;
       align-items:center;
       justify-content:center;
-      flex-wrap:wrap;
+    }
+    .hero .inner{
+      width:100%;
+      max-width:var(--max-width);
+      display:flex;
+      gap:20px;
+      align-items:center;
+      padding:8px;
     }
     .logo{
-      width:110px;height:110px;border-radius:18px;border:4px solid rgba(255,255,255,0.12);
-      background:rgba(255,255,255,0.03);display:flex;align-items:center;justify-content:center;
-      overflow:hidden;
-      flex:0 0 110px;
+      width:108px;height:108px;border-radius:20px;flex:0 0 108px;
+      border:4px solid rgba(255,255,255,0.12);overflow:hidden;background:#fff;
+      box-shadow:0 10px 30px rgba(0,0,0,0.12);
     }
-    .logo img{width:100%;height:100%;object-fit:cover;}
-    .hero h1{margin:0;font-size:1.6rem}
-    .hero p{margin:6px 0 0;color:rgba(255,255,255,0.92)}
-    .hero .cta{
-      margin-top:12px;
-      display:inline-flex;gap:10px;align-items:center;
+    .logo img{width:100%;height:100%;object-fit:cover;display:block}
+    .hero-text{flex:1;min-width:260px}
+    .title{font-size:1.45rem;font-weight:700;margin:0 0 6px}
+    .subtitle{margin:0;color:rgba(255,255,255,0.92);font-weight:400}
+    .status-pill{
+      display:inline-block;margin-top:12px;background:rgba(255,255,255,0.12);color:#fff;padding:8px 12px;border-radius:999px;font-weight:600;font-size:0.92rem;
+      border:1px solid rgba(255,255,255,0.08)
     }
-    .btn{
-      background:white;color:var(--accent1);padding:10px 14px;border-radius:10px;font-weight:600;text-decoration:none;
-      display:inline-flex;align-items:center;gap:8px;box-shadow:0 6px 18px rgba(79,70,229,0.12);
+
+    /* ---------- Main ---------- */
+    main{max-width:var(--max-width);margin:28px auto;padding:0 20px 60px}
+
+    /* features row */
+    .features{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-bottom:30px}
+    @media (max-width:980px){ .features{grid-template-columns:repeat(2,1fr)} }
+    @media (max-width:560px){ .features{grid-template-columns:1fr} }
+
+    .feature{
+      background:var(--panel);padding:20px;border-radius:12px;box-shadow:var(--shadow);
+      display:flex;gap:12px;align-items:flex-start;border:1px solid rgba(14,20,30,0.02)
     }
-    .btn.ghost{background:transparent;color:white;border:1px solid rgba(255,255,255,0.15)}
-    .note{font-size:0.9rem;color:rgba(255,255,255,0.92);opacity:0.95;margin-left:6px}
+    .feature .icon{
+      width:48px;height:48px;flex:0 0 48px;border-radius:10px;background:linear-gradient(180deg,rgba(124,58,237,0.12),rgba(14,165,233,0.08));display:flex;align-items:center;justify-content:center;color:var(--accent2);font-weight:700;
+    }
+    .feature h4{margin:0 0 6px;font-size:1rem}
+    .feature p{margin:0;color:var(--muted);font-size:0.95rem}
 
-    /* Main container */
-    main{max-width:var(--maxw);margin:30px auto;padding:0 16px}
-
-    /* Features */
-    .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:var(--gap);margin-bottom:26px}
-    .card{background:var(--card);padding:18px;border-radius:var(--radius);box-shadow:0 6px 18px rgba(16,24,40,0.04)}
-    .card h3{margin:0 0 8px;font-size:1rem}
-    .card p{margin:0;color:var(--muted);font-size:0.95rem}
-
-    /* Gallery */
-    .section-title{text-align:center;margin:12px 0 18px;font-size:1.25rem}
+    /* ---------- Gallery ---------- */
+    .section-title{font-weight:700;text-align:center;margin:6px 0 20px;font-size:1.15rem;color:#0f1724}
     .gallery{
       display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap:18px;
+      grid-template-columns: repeat(3, 1fr);
+      gap:22px;
       align-items:start;
     }
-    .shot{
-      background:linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.9));
-      border-radius:12px;overflow:hidden;padding:12px;display:flex;align-items:center;justify-content:center;
-      height:420px; /* consistent device look */
-      box-shadow:0 10px 25px rgba(2,6,23,0.06);
-    }
-    .shot img{
-      max-width:100%;max-height:100%;object-fit:cover;border-radius:8px;display:block;
-    }
+    @media (max-width:1100px){ .gallery{grid-template-columns:repeat(2,1fr)} }
+    @media (max-width:700px){ .gallery{grid-template-columns:1fr} }
 
-    /* Fullscreen lightbox */
+    /* device frame */
+    .device{
+      background:linear-gradient(180deg,#fff,#fbfdff);
+      border-radius:16px;
+      padding:20px;
+      box-shadow:var(--shadow);
+      border:1px solid rgba(12,18,32,0.03);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:540px;
+      transition:transform .28s ease;
+      overflow:hidden;
+      position:relative;
+    }
+    .device:hover{transform:translateY(-6px)}
+    .phone{
+      width:220px;
+      max-width:100%;
+      border-radius:28px;
+      background:linear-gradient(180deg,#f8fafc,#ffffff);
+      box-shadow:inset 0 2px 0 rgba(255,255,255,0.6), 0 12px 40px rgba(2,6,23,0.06);
+      padding:12px;
+      display:block;
+      aspect-ratio:9 / 19; /* consistent mobile ratio */
+      position:relative;
+      overflow:hidden;
+    }
+    /* the actual screenshot image uses cover so all images look consistent */
+    .phone img{
+      width:100%;height:100%;object-fit:cover;display:block;border-radius:16px;
+      transform-origin:center center;transition:transform .28s ease;
+    }
+    .device:hover .phone img{transform:scale(1.03)}
+
+    /* screenshot caption */
+    .caption{position:absolute;left:18px;bottom:14px;background:rgba(255,255,255,0.9);padding:8px 10px;border-radius:999px;font-size:0.85rem;color:#0f1724;border:1px solid rgba(14,20,30,0.04)}
+
+    /* ---------- Lightbox ---------- */
     .lightbox{
-      position:fixed;inset:0;background:rgba(2,6,23,0.75);display:none;align-items:center;justify-content:center;padding:20px;z-index:1200;
+      position:fixed;inset:0;background:rgba(5,8,15,0.78);display:none;align-items:center;justify-content:center;padding:22px;z-index:1400;
     }
-    .lightbox img{max-width:95%;max-height:90%;border-radius:8px;box-shadow:0 18px 60px rgba(0,0,0,0.6)}
-    .lightbox .close{position:absolute;right:18px;top:18px;background:transparent;border:0;color:white;font-size:28px;cursor:pointer}
+    .lightbox img{max-width:96%;max-height:92%;border-radius:10px;box-shadow:0 40px 120px rgba(0,0,0,0.6)}
+    .lightbox .close{position:absolute;top:22px;right:22px;background:transparent;color:#fff;border:0;font-size:28px;cursor:pointer}
 
-    /* Footer */
-    footer{margin-top:34px;padding:26px 16px;background:#0f1724;color:#cbd5e1;text-align:center;border-top:1px solid rgba(255,255,255,0.02)}
+    /* ---------- Footer ---------- */
+    footer{margin-top:42px;padding:28px 20px;background:#071133;color:#cbd5e1;text-align:center;border-top-left-radius:12px;border-top-right-radius:12px}
     footer a{color:#9be7ff;text-decoration:none}
+    footer small{display:block;color:#9fb1c9;margin-top:6px}
 
-    /* Responsive tweaks */
-    @media (max-width:720px){
-      .shot{height:380px}
-      .hero h1{font-size:1.25rem}
+    /* small screens tweaks */
+    @media (max-width:520px){
+      .hero{padding:28px 14px}
+      .logo{width:86px;height:86px}
+      .title{font-size:1.05rem}
+      .device{min-height:420px}
     }
   </style>
 </head>
 <body>
 
+  <!-- HERO -->
   <header class="hero" role="banner">
     <div class="inner">
       <div class="logo" aria-hidden="true">
         <img src="https://i.postimg.cc/GhKP98v3/Logo-500kb.png" alt="AR Draw Trace logo">
       </div>
-      <div style="min-width:260px;max-width:760px;text-align:left;">
-        <h1>AR Draw Trace — Sketch & Paint</h1>
-        <p>Trace real sketches using AR guidance. Simple, lightweight, and great for learning and fun drawing.</p>
-        <div class="cta">
-          <!-- Placeholder: update href when your Play store link is ready -->
-          <a class="btn" href="#" title="Not available yet" onclick="return false;">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="vertical-align:middle">
-              <path d="M21.6 11.1 4.9 2.2c-.9-.5-2 .1-2 1.1v17.4c0 1 .9 1.7 1.8 1.2l16.7-8.9c.9-.5.9-1.8 0-2.5z" fill="#4f46e5"/>
-            </svg>
-            Not on Google Play yet
-          </a>
-          <span class="note">Privacy Policy linked below • Support: <a href="mailto:report.info.ai@gmail.com" style="color:inherit;text-decoration:underline">report.info.ai@gmail.com</a></span>
+      <div class="hero-text">
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+            <h1 class="title">AR Draw Trace — Sketch & Paint</h1>
+            <span class="status-pill" aria-hidden="true">Not on Google Play</span>
+          </div>
+          <p class="subtitle">Trace real sketches using AR guidance. Simple, lightweight, and built for learners and hobbyists.</p>
         </div>
       </div>
     </div>
   </header>
 
+  <!-- MAIN -->
   <main>
     <!-- Features -->
-    <section class="features" aria-label="App features">
-      <div class="card">
-        <h3>AR Tracing</h3>
-        <p>Project images and trace over them precisely using AR alignment.</p>
+    <section class="features" aria-label="Features">
+      <div class="feature">
+        <div class="icon">AR</div>
+        <div>
+          <h4>AR Tracing</h4>
+          <p>Project and align images precisely for accurate tracing and practice.</p>
+        </div>
       </div>
-      <div class="card">
-        <h3>Import & Customize</h3>
-        <p>Import your images and adjust transparency & position for easier tracing.</p>
+      <div class="feature">
+        <div class="icon">🎨</div>
+        <div>
+          <h4>Import & Customize</h4>
+          <p>Adjust image transparency, scale and position so tracing is easy.</p>
+        </div>
       </div>
-      <div class="card">
-        <h3>Lightweight UI</h3>
-        <p>Simple controls focused on quick sketching and learning.</p>
+      <div class="feature">
+        <div class="icon">⚡</div>
+        <div>
+          <h4>Lightweight UI</h4>
+          <p>Fast, intuitive interface focused on drawing without distractions.</p>
+        </div>
       </div>
-      <div class="card">
-        <h3>For Learners & Hobbyists</h3>
-        <p>Great for students, beginners and anyone who wants to practice drawing.</p>
-      </div>
-    </section>
-
-    <!-- Screenshots -->
-    <section aria-labelledby="shots">
-      <h2 id="shots" class="section-title">App Screenshots</h2>
-
-      <div class="gallery" id="gallery">
-        <!-- Use the screenshots you provided -->
-        <figure class="shot"><img src="https://i.postimg.cc/Jy3k5dTn/SS-1.png" alt="AR Draw Trace screenshot 1" loading="lazy" data-full="https://i.postimg.cc/Jy3k5dTn/SS-1.png"></figure>
-        <figure class="shot"><img src="https://i.postimg.cc/vgQ6qLjv/SS-2.png" alt="AR Draw Trace screenshot 2" loading="lazy" data-full="https://i.postimg.cc/vgQ6qLjv/SS-2.png"></figure>
-        <figure class="shot"><img src="https://i.postimg.cc/WFXqQqcc/SS-3.png" alt="AR Draw Trace screenshot 3" loading="lazy" data-full="https://i.postimg.cc/WFXqQqcc/SS-3.png"></figure>
-        <figure class="shot"><img src="https://i.postimg.cc/1g1F6Zr2/SS-4.png" alt="AR Draw Trace screenshot 4" loading="lazy" data-full="https://i.postimg.cc/1g1F6Zr2/SS-4.png"></figure>
-        <figure class="shot"><img src="https://i.postimg.cc/7JhJDPqG/SS-5.png" alt="AR Draw Trace screenshot 5" loading="lazy" data-full="https://i.postimg.cc/7JhJDPqG/SS-5.png"></figure>
-        <figure class="shot"><img src="https://i.postimg.cc/6TpvCcCW/SS-6.png" alt="AR Draw Trace screenshot 6" loading="lazy" data-full="https://i.postimg.cc/6TpvCcCW/SS-6.png"></figure>
-      </div>
-    </section>
-
-    <!-- Short note about Play Store -->
-    <section style="margin-top:20px" aria-label="Note">
-      <div class="card" style="display:flex;gap:14px;align-items:center">
-        <div style="flex:1">
-          <strong>Note for reviewers:</strong>
-          <p style="margin:6px 0 0;color:var(--muted)">This app is not yet published on Google Play. The GitHub Pages site is the official landing page while the app is under review. Privacy policy is linked in the footer.</p>
+      <div class="feature">
+        <div class="icon">👩‍🎨</div>
+        <div>
+          <h4>For Learners</h4>
+          <p>Built to help beginners practice step-by-step and build skills.</p>
         </div>
       </div>
     </section>
 
+    <!-- Gallery title -->
+    <h2 class="section-title">App Screenshots</h2>
+
+    <!-- Gallery -->
+    <section class="gallery" id="gallery" aria-label="Screenshot gallery">
+      <div class="device">
+        <div class="phone" role="img" aria-label="Screenshot 1">
+          <img src="https://i.postimg.cc/Jy3k5dTn/SS-1.png" alt="AR Draw Trace screenshot 1" loading="lazy" data-full="https://i.postimg.cc/Jy3k5dTn/SS-1.png">
+        </div>
+        <div class="caption">Screenshot 1</div>
+      </div>
+
+      <div class="device">
+        <div class="phone" role="img" aria-label="Screenshot 2">
+          <img src="https://i.postimg.cc/vgQ6qLjv/SS-2.png" alt="AR Draw Trace screenshot 2" loading="lazy" data-full="https://i.postimg.cc/vgQ6qLjv/SS-2.png">
+        </div>
+        <div class="caption">Screenshot 2</div>
+      </div>
+
+      <div class="device">
+        <div class="phone" role="img" aria-label="Screenshot 3">
+          <img src="https://i.postimg.cc/WFXqQqcc/SS-3.png" alt="AR Draw Trace screenshot 3" loading="lazy" data-full="https://i.postimg.cc/WFXqQqcc/SS-3.png">
+        </div>
+        <div class="caption">Screenshot 3</div>
+      </div>
+
+      <div class="device">
+        <div class="phone" role="img" aria-label="Screenshot 4">
+          <img src="https://i.postimg.cc/1g1F6Zr2/SS-4.png" alt="AR Draw Trace screenshot 4" loading="lazy" data-full="https://i.postimg.cc/1g1F6Zr2/SS-4.png">
+        </div>
+        <div class="caption">Screenshot 4</div>
+      </div>
+
+      <div class="device">
+        <div class="phone" role="img" aria-label="Screenshot 5">
+          <img src="https://i.postimg.cc/7JhJDPqG/SS-5.png" alt="AR Draw Trace screenshot 5" loading="lazy" data-full="https://i.postimg.cc/7JhJDPqG/SS-5.png">
+        </div>
+        <div class="caption">Screenshot 5</div>
+      </div>
+
+      <div class="device">
+        <div class="phone" role="img" aria-label="Screenshot 6">
+          <img src="https://i.postimg.cc/6TpvCcCW/SS-6.png" alt="AR Draw Trace screenshot 6" loading="lazy" data-full="https://i.postimg.cc/6TpvCcCW/SS-6.png">
+        </div>
+        <div class="caption">Screenshot 6</div>
+      </div>
+    </section>
+
+    <!-- Note card -->
+    <section style="margin-top:26px">
+      <div style="background:#fff;border-radius:12px;padding:16px;box-shadow:var(--shadow);border:1px solid rgba(12,18,30,0.03)">
+        <strong>Reviewer note:</strong>
+        <span style="color:var(--muted)">This site is the official landing page for AR Draw Trace. The app is not yet published on Google Play; privacy policy and support contact are listed below.</span>
+      </div>
+    </section>
   </main>
 
   <!-- Lightbox -->
@@ -185,50 +266,47 @@
     <img id="lb-img" src="" alt="screenshot preview">
   </div>
 
+  <!-- FOOTER -->
   <footer>
-    <div style="max-width:var(--maxw);margin:0 auto">
-      <p style="margin:6px 0 6px;font-weight:600;color:#dbeafe">Privacy Policy & Terms</p>
-      <p style="margin:6px 0 8px;color:#aeb8c8">
-        <a href="https://shreejieasyapps.blogspot.com/2023/09/ar-drawing-sketch-real-sketch.html" target="_blank" rel="noopener">View Privacy Policy</a> &nbsp;•&nbsp;
-        Support: <a href="mailto:report.info.ai@gmail.com">report.info.ai@gmail.com</a>
-      </p>
-      <p style="margin:8px 0 0;font-size:0.9rem;color:#9aa8bb">© 2025 AR Draw Trace — Sketch & Paint</p>
+    <div style="max-width:var(--max-width);margin:0 auto;padding:6px 12px">
+      <div style="font-weight:700;margin-bottom:6px">Privacy & Support</div>
+      <div style="color:#9fb1c9">
+        <a href="https://shreejieasyapps.blogspot.com/2023/09/ar-drawing-sketch-real-sketch.html" target="_blank" rel="noopener">Privacy Policy</a>
+        &nbsp;•&nbsp;
+        <a href="mailto:report.info.ai@gmail.com">report.info.ai@gmail.com</a>
+      </div>
+      <small>© 2025 AR Draw Trace — Sketch & Paint</small>
     </div>
   </footer>
 
   <script>
-    // Simple lightbox for screenshots
+    // Lightbox
     (function(){
-      const lb = document.getElementById('lightbox');
+      const gallery = document.getElementById('gallery');
+      const lightbox = document.getElementById('lightbox');
       const lbImg = document.getElementById('lb-img');
-      const closeBtn = document.getElementById('lb-close');
+      const lbClose = document.getElementById('lb-close');
 
-      document.getElementById('gallery').addEventListener('click', e=>{
+      gallery.addEventListener('click', (e) => {
         const img = e.target.closest('img');
         if(!img) return;
         const src = img.getAttribute('data-full') || img.src;
         lbImg.src = src;
-        lb.style.display = 'flex';
-        lb.setAttribute('aria-hidden','false');
+        lightbox.style.display = 'flex';
+        lightbox.setAttribute('aria-hidden','false');
         document.body.style.overflow = 'hidden';
       });
 
-      closeBtn.addEventListener('click', closeLB);
-      lb.addEventListener('click', function(e){
-        if(e.target === lb) closeLB();
-      });
-
       function closeLB(){
-        lb.style.display = 'none';
+        lightbox.style.display = 'none';
         lbImg.src = '';
-        lb.setAttribute('aria-hidden','true');
+        lightbox.setAttribute('aria-hidden','true');
         document.body.style.overflow = '';
       }
 
-      // keyboard ESC to close
-      document.addEventListener('keydown', function(e){
-        if(e.key === 'Escape' && lb.style.display === 'flex') closeLB();
-      });
+      lbClose.addEventListener('click', closeLB);
+      lightbox.addEventListener('click', (e) => { if(e.target === lightbox) closeLB(); });
+      document.addEventListener('keydown', (e) => { if(e.key === 'Escape' && lightbox.style.display === 'flex') closeLB(); });
     })();
   </script>
 </body>
